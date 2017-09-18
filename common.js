@@ -1,15 +1,22 @@
+/*
+返回指定的参数
+*/
 function getUrlParam(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
 	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
 	if (r != null) return unescape(r[2]); return null; //返回参数值
 }
+/*
+change to specify page div
+*/
 function toPage(x){
+	$(".page").hide();
 	if((x | 0) === x){
-		$(".page").hide();
+		// if the param x is a number, It's the index of page
 		$(".page").eq(x).show();
 		$("body").css("background",$(".page").eq(x).attr("color"));
 	}else{
-		$(".page").hide();
+		// if the param x is a String, It's the id of page
 		$("#" + x).show();
 		$("body").css("background",$("#" + x).attr("color"));
 	}
@@ -125,7 +132,6 @@ function commoninit(x){
 	
 	toPage(x);
 }
-
 
 function toggle_img_src(selector,img1,img2){
 	var d = new Date();
